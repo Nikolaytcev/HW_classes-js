@@ -1,12 +1,4 @@
 export class Character {
-
-    #types= {"Bowman": {attack: 25, defence: 25},
-    "Swordsman": {attack: 40, defence: 10},
-    "Magician": {attack: 10, defence: 40},
-    "Daemon": {attack: 25, defence: 25},
-    "Undead": {attack: 40, defence: 10},
-    "Zombie": {attack: 10, defence: 40}}
-
     constructor(name, type) {
         try {
             if (name.length < 2 || name.length > 10) {
@@ -15,7 +7,7 @@ export class Character {
             else {
                 this.name = name;
             }
-            if (!Object.keys(this.#types).includes(type)) {
+            if (!["Bowman", "Magician", "Daemon", "Swordsman", "Undead", "Zombie"].includes(type)) {
                 throw new Error("Ошибка! Несуществующий персонаж");
             }
             else {
@@ -27,8 +19,8 @@ export class Character {
         }
         this.health = 100;
         this.level = 1;
-        this.attack = this.#types[this.type].attack;
-        this.defence = this.#types[this.type].defence;
+        this.attack = undefined;
+        this.defence = undefined;
     }
 
     levelUp() {
